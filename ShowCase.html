@@ -1,5 +1,12 @@
-<!--link rel="import" href="MyAttributedGreeter.html"-->
+<!--DEPRECATED link rel="import" href="MyAttributedGreeter.html"-->
 
-<script type="module" src="MyAttributedGreeter.html"></script>
+
+<script src="MyGreeterModule.js"></script>
 
 <my-greeter subject="Sam"></my-greeter>
+
+
+<!-- FIXME CORS headers required for -- type="module" -->
+<script  src="MyFamilyGreeterModule.js"></script>
+
+<my-family-greeter subjects="Adam,Eve,Dino Baby"></my-family-greeter>
