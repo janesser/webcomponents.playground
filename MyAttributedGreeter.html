@@ -1,0 +1,39 @@
+<!--
+    https://ultimatecourses.com/blog/the-ultimate-guide-to-web-components#what-are-web-components
+    
+    https://developer.mozilla.org/en-US/docs/Web/Web_Components
+-->
+<template id="my-greeter-tpl">
+    <style>
+        div {
+            color: red;
+        }
+    </style>
+    <div>Hello awesome <slot name="my-name">Unknown</slot>, glad to see ya!</div>
+</template>
+
+<script>
+    customElements.define('my-greeter',
+        class extends HTMLElement {
+            constructor() {
+                super();
+                const template = document.getElementById('my-greeter-tpl');
+
+                this.attachShadow({ mode: 'open' })
+                    .appendChild(template.content.cloneNode(true));
+
+                this.$myName = this.shadowRoot.querySelector('slot[name="my-name"]');
+            }
+
+            static get observedAttributes() {
+                return ['subject'];
+            }
+
+            attributeChangedCallback(name, oldValue, newValue) {
+                this.$myName.textContent = newValue;
+            }
+        }
+    );
+</script>
+
+<my-greeter subject="Sam"></my-greeter>

@@ -1,0 +1,49 @@
+<template id="my-daterange-picker-tpl">
+    <fieldset>
+        <label for="from">Von:&nbsp;</label>
+        <input type="date" name="from" id="from-date">
+        <label for="until">Bis:&nbsp;</label>
+        <input type="date" name="until" id="until-date">
+        <slot name="validity-note">all fine!</slot>
+    </fieldset>
+</template>
+
+<script>
+    class MyDateRangePicker extends HTMLElement {
+        constructor() {
+            super();
+
+            const template = document.getElementById('my-daterange-picker-tpl');
+            const templateContent = template.content.cloneNode(true);
+            this.attachShadow({ mode: 'open' }).appendChild(templateContent);
+
+            this.$validityNote = this.shadowRoot.querySelector('slot[name="validity-note"]')
+            const self = this;
+            this.shadowRoot.getElementById("from-date").addEventListener("change", function (event) {
+                console.debug([this, self, event])
+                self._fromTime = new Date(this.value).getTime()
+                self.dispatchEvent(new Event("validate", { bubbles: true }))
+            });
+            this.shadowRoot.getElementById("until-date").addEventListener("change", function (event) {
+                console.debug([this, self, event])
+                self._untilTime = new Date(this.value).getTime()
+                self.dispatchEvent(new Event("validate", { bubbles: true }))
+            });
+            // () => { ... } has another this as function() { ... } would have MUHAHAHA
+            document.addEventListener("validate", () => {
+                console.debug([this._fromTime, this._untilTime])
+                if (this._untilTime < this._fromTime)
+                    this.$validityNote.textContent = "Nah!"
+                else
+                    this.$validityNote.textContent = "Okay."
+            });
+
+            this._fromTime = this._untilTime = 0;
+        }
+    }
+
+    customElements.define('my-daterange-picker', MyDateRangePicker);
+</script>
+<form>
+    <my-daterange-picker></my-daterange-picker>
+</form>

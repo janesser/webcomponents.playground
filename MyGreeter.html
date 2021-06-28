@@ -1,0 +1,32 @@
+<!--
+    https://ultimatecourses.com/blog/the-ultimate-guide-to-web-components#what-are-web-components
+    
+    https://developer.mozilla.org/en-US/docs/Web/Web_Components
+-->
+<template id="my-greeter-tpl">
+    <style>
+        div {
+            color: red;
+        }
+    </style>
+    <div>Hello awesome <slot name="my-name">Unknown</slot>, glad to see ya!</div>
+</template>
+
+<script>
+    customElements.define('my-greeter',
+        class extends HTMLElement {
+            constructor() {
+                super();
+                let template = document.getElementById('my-greeter-tpl');
+                let templateContent = template.content;
+
+                const shadowRoot = this.attachShadow({ mode: 'closed' })
+                    .appendChild(templateContent.cloneNode(true));
+            }
+        }
+    );
+</script>
+
+<my-greeter>
+    <span slot="my-name">Sam</span>
+</my-greeter>
