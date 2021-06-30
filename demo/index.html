@@ -1,5 +1,6 @@
 <!doctype html>
-<html lang="en-GB">
+<html>
+
 <head>
   <meta charset="utf-8">
   <style>
@@ -8,22 +9,43 @@
     }
   </style>
 </head>
+
 <body>
+  <p>
   <div id="demo"></div>
+
 
   <script type="module">
     import { html, render } from 'lit-html';
-    import '../my-greeter.js';
+    import { MyGreeter as MyGreeterLit } from '../src/MyGreeterLit.js';
+    window.customElements.define('my-greeter-lit', MyGreeterLit);
 
-    const title = 'Hello owc World!';
+    const subject = 'Sam';
     render(
       html`
-        <my-greeter .title=${title}>
-          some more light-dom
-        </my-greeter>
+        <my-greeter-lit .subject=${subject}></my-greeter-lit>
       `,
       document.querySelector('#demo')
     );
   </script>
+  </p>
+  <p>
+    <script type="module">
+      import { MyGreeter } from '../src/MyGreeter.js';
+      window.customElements.define('my-greeter', MyGreeter);
+    </script>
+
+    <my-greeter subject="Ian"></my-greeter>
+  </p>
+  <p>
+    <script type="module">
+      import { MyFamilyGreeter } from '../src/MyFamilyGreeter.js';
+      window.customElements.define('my-family-greeter', MyFamilyGreeter);
+    </script>
+
+    <my-family-greeter subjects="Mum, Däd, Lil'1"></my-family-greeter>
+  </p>
+
 </body>
+
 </html>

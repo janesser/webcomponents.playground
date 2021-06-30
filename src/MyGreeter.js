@@ -1,37 +1,25 @@
-import { html, css, LitElement } from 'lit-element';
+// https://developers.google.com/web/fundamentals/web-components/shadowdom -->
 
-export class MyGreeter extends LitElement {
-  static get styles() {
-    return css`
-      :host {
-        display: block;
-        padding: 25px;
-        color: var(--my-greeter-text-color, #000);
-      }
-    `;
-  }
-
-  static get properties() {
-    return {
-      title: { type: String },
-      counter: { type: Number },
-    };
-  }
-
+export class MyGreeter extends HTMLElement {
   constructor() {
     super();
-    this.title = 'Hey there';
-    this.counter = 5;
+
+    const shadow = this.attachShadow({ mode: 'open' });
+    shadow.innerHTML = `
+<style>div { color: red; }</style>
+<div>Hello awesome <slot name="my-name">Unknown</slot>, glad to see ya!</div>`;
+
+    this.$myName = '';
   }
 
-  __increment() {
-    this.counter += 1;
+  static get observedAttributes() {
+    return ['subject'];
   }
 
-  render() {
-    return html`
-      <h2>${this.title} Nr. ${this.counter}!</h2>
-      <button @click=${this.__increment}>increment</button>
-    `;
+  attributeChangedCallback(name, oldValue, newValue) {
+    this.$myName = newValue;
+
+    this.shadowRoot.querySelector('slot[name="my-name"]').textContent =
+      this.$myName;
   }
 }

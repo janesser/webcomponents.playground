@@ -1,9 +1,6 @@
 {
   "name": "my-greeter",
   "version": "0.0.0",
-  "description": "Webcomponent my-greeter following open-wc recommendations",
-  "author": "my-greeter",
-  "license": "MIT",
   "main": "index.js",
   "module": "index.js",
   "scripts": {

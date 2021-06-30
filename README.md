@@ -1,19 +1,10 @@
-# \<my-greeter>
+# \<my-custom-web-componontens-playground>
 
 This webcomponent follows the [open-wc](https://github.com/open-wc/open-wc) recommendation.
 
 ## Installation
 ```bash
-npm i my-greeter
-```
-
-## Usage
-```html
-<script type="module">
-  import 'my-greeter/my-greeter.js';
-</script>
-
-<my-greeter></my-greeter>
+npm i webcomponents-playground
 ```
 
 ## Linting with ESLint, Prettier, and Types

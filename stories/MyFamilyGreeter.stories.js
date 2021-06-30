@@ -1,0 +1,22 @@
+import { html } from 'lit-html';
+
+import { MyFamilyGreeter } from '../src/MyFamilyGreeter.js';
+
+window.customElements.define('my-family-greeter', MyFamilyGreeter);
+
+export default {
+  title: 'MyFamilyGreeter',
+  component: 'my-family-greeter',
+  argTypes: {
+    subjects: { control: 'text' },
+  },
+};
+
+function Template({ subjects }) {
+  return html` <my-family-greeter subjects="${subjects}"></my-family-greeter> `;
+}
+
+export const KnownFamily = Template.bind({});
+KnownFamily.args = {
+  subjects: 'Adam, Eve, Jane',
+};
