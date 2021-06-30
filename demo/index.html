@@ -17,8 +17,7 @@
 
   <script type="module">
     import { html, render } from 'lit-html';
-    import { MyGreeter as MyGreeterLit } from '../src/MyGreeterLit.js';
-    window.customElements.define('my-greeter-lit', MyGreeterLit);
+    import '../my-greeter-lit.js';
 
     const subject = 'Sam';
     render(
@@ -31,16 +30,14 @@
   </p>
   <p>
     <script type="module">
-      import { MyGreeter } from '../src/MyGreeter.js';
-      window.customElements.define('my-greeter', MyGreeter);
+      import '../my-greeter.js';
     </script>
 
     <my-greeter subject="Ian"></my-greeter>
   </p>
   <p>
     <script type="module">
-      import { MyFamilyGreeter } from '../src/MyFamilyGreeter.js';
-      window.customElements.define('my-family-greeter', MyFamilyGreeter);
+      import '../my-family-greeter.js';
     </script>
 
     <my-family-greeter subjects="Mum, Däd, Lil'1"></my-family-greeter>

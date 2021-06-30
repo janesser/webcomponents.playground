@@ -1,0 +1,47 @@
+{
+  "version": 2,
+  "tags": [
+    {
+      "name": "my-greeter",
+      "properties": [
+        {
+          "name": "subject",
+          "type": "String",
+          "description": "The person to greet",
+          "default": "Unknown"
+        }
+      ],
+      "slots": [
+        "my-name"
+      ]
+    },
+    {
+      "name": "my-family-greeter",
+      "properties": [
+        {
+          "name": "subjects",
+          "type": "String",
+          "description": "The persons of the family to greet (comma seperated)",
+          "default": "Unknown"
+        }
+      ]
+    },
+    {
+      "name": "my-greeter-lit",
+      "properties": [
+        {
+          "name": "subject",
+          "type": "String",
+          "description": "The person to greet",
+          "default": "Unknown"
+        }
+      ],
+      "cssProperties": [
+        {
+          "name": "--my-greeter-text-color",
+          "type": "Color"
+        }
+      ]
+    }
+  ]
+}

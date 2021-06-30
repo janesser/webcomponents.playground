@@ -1,8 +1,6 @@
 import { html } from 'lit-html';
 
-import { MyGreeter } from '../src/MyGreeter.js';
-
-window.customElements.define('my-greeter', MyGreeter);
+import '../my-greeter.js';
 
 export default {
   title: 'MyGreeter',
